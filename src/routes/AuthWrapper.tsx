@@ -1,37 +1,50 @@
 import { useEffect, useState } from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { getUserAccessToken } from '../hooks/useAuthentication';
+import { Navigate, Outlet, useSearchParams } from 'react-router-dom';
 import { ROOT, LOGIN } from './routes.json';
+import { getAccessToken } from '../services/authService';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { setToken } from '../redux/slices/authSlice';
 
 export default function AuthWrapper() {
-  const { pathname } = useLocation();
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [searchparams] = useSearchParams();
+  const code = searchparams.get('code');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
-    const authUser = async () => {
-      try {
-        const authenticated = await getUserAccessToken();
-        setIsAuthenticated(!!authenticated);
-      } catch (error) {
-        setIsAuthenticated(false);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    authUser();
-  }, [pathname]);
+    if (code) {
+      const fetchToken = async () => {
+        try {
+          setIsLoading(true);
+          const response = await getAccessToken(code);
+          if (response.access_token) {
+            dispatch(setToken(response.access_token));
+            // Remove the `code` parameter from the URL
+            const url = new URL(window.location.href);
+            url.searchParams.delete('code');
+            window.history.replaceState({}, '', url.toString());
+          }
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchToken();
+    }
+  }, []);
 
   if (isLoading) return <div>Loading...</div>;
 
-  // If not authenticated and not on the login page, redirect to login
-  if (!isAuthenticated && location.pathname !== `${ROOT.route}${LOGIN.route}`) {
+  //   If not authenticated and not on the login page, redirect to login
+  if (!token && !code && location.pathname !== `${ROOT.route}${LOGIN.route}`) {
     return <Navigate to={`${ROOT.route}${LOGIN.route}`} replace />;
   }
 
   // If authenticated and on the login page, redirect to the root
-  if (isAuthenticated && location.pathname === `${ROOT.route}${LOGIN.route}`) {
+  if (token && location.pathname === `${ROOT.route}${LOGIN.route}`) {
     return <Navigate to={ROOT.route} replace />;
   }
 
