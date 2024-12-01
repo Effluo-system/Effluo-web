@@ -8,7 +8,7 @@ export default function Login() {
   const handleGitHubLogin = () => {
     const clientId = import.meta.env.VITE_CLIENT_ID;
     const redirectUri = 'http://localhost:5173/'; // Replace with your redirect URI
-    const scope = 'repo'; // Add scopes as needed
+    const scope = 'repo user'; // Add scopes as needed
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
     window.location.href = githubAuthUrl;
   };

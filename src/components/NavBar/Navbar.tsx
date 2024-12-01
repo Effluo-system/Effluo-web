@@ -16,12 +16,15 @@ import { LOGIN, ROOT } from '../../routes/routes.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { clearToken } from '../../redux/slices/authSlice';
+import { setUser } from '../../redux/slices/userSlice';
+
 const pages = ['Console', 'About'];
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {
   const dispatch = useDispatch();
   const token = useSelector((state: RootState) => state.auth.token);
+  const user = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -146,7 +149,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={user?.login} src={user?.avatar_url} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -171,6 +174,7 @@ function ResponsiveAppBar() {
                     onClick={() => {
                       handleCloseUserMenu;
                       dispatch(clearToken());
+                      dispatch(setUser({}));
                     }}
                   >
                     <Typography sx={{ textAlign: 'center' }}>

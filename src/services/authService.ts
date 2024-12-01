@@ -34,12 +34,12 @@ export const getAccessToken = async (code: string) => {
   }
 };
 
-export const h = async () => {
+export const getUserDetails = async (token: string) => {
   try {
     const response = await apiRequestService.sendRequest(
-      `${EFFLUO_NODE_BASE_URL}/h`,
-      'post',
-      undefined
+      `${EFFLUO_NODE_BASE_URL}/auth/user-details`,
+      'get',
+      token
     );
     return response;
   } catch (error) {

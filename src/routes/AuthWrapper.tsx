@@ -3,14 +3,15 @@ import { Navigate, Outlet, useSearchParams } from 'react-router-dom';
 import { ROOT, LOGIN } from './routes.json';
 import { getAccessToken } from '../services/authService';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { AppDispatch, RootState } from '../redux/store';
 import { setToken } from '../redux/slices/authSlice';
+import { getUserAc } from '../redux/slices/userSlice';
 
 export default function AuthWrapper() {
   const [searchparams] = useSearchParams();
   const code = searchparams.get('code');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
@@ -35,6 +36,19 @@ export default function AuthWrapper() {
       fetchToken();
     }
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      const fetchUserDetails = async () => {
+        try {
+          dispatch(getUserAc(token));
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchUserDetails();
+    }
+  }, [token]);
 
   if (isLoading) return <div>Loading...</div>;
 
