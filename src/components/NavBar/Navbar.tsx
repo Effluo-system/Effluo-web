@@ -48,7 +48,6 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  console.log(token);
   return (
     <AppBar position="static" sx={{ width: '100%' }}>
       <Container>
@@ -117,7 +116,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href={`${ROOT.route}`}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -148,7 +147,10 @@ function ResponsiveAppBar() {
           {token ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0, border: '3px solid white' }}
+                >
                   <Avatar alt={user?.login} src={user?.avatar_url} />
                 </IconButton>
               </Tooltip>

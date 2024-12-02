@@ -20,12 +20,18 @@ dependencies:
   '@mui/material':
     specifier: ^6.1.9
     version: 6.1.9(@emotion/react@11.13.5)(@emotion/styled@11.13.5)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
+  '@mui/x-data-grid':
+    specifier: ^7.23.0
+    version: 7.23.0(@emotion/react@11.13.5)(@emotion/styled@11.13.5)(@mui/material@6.1.9)(@mui/system@6.1.9)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
   '@reduxjs/toolkit':
     specifier: ^2.4.0
     version: 2.4.0(react-redux@9.1.2)(react@18.3.1)
   axios:
     specifier: ^1.7.8
     version: 1.7.8
+  lottie-react:
+    specifier: ^2.4.0
+    version: 2.4.0(react-dom@18.3.1)(react@18.3.1)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -791,6 +797,51 @@ packages:
       prop-types: 15.8.1
       react: 18.3.1
       react-is: 18.3.1
+    dev: false
+
+  /@mui/x-data-grid@7.23.0(@emotion/react@11.13.5)(@emotion/styled@11.13.5)(@mui/material@6.1.9)(@mui/system@6.1.9)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-nypSz/7j0HPvW7tRPcZAlQADOiRAE4jTIcxwwJUPLtU17EPJOiw1iB29SRYtUThw4f3aXETPAeT4fzgagpuiKg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.9.0
+      '@emotion/styled': ^11.8.1
+      '@mui/material': ^5.15.14 || ^6.0.0
+      '@mui/system': ^5.15.14 || ^6.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.26.0
+      '@emotion/react': 11.13.5(@types/react@18.3.12)(react@18.3.1)
+      '@emotion/styled': 11.13.5(@emotion/react@11.13.5)(@types/react@18.3.12)(react@18.3.1)
+      '@mui/material': 6.1.9(@emotion/react@11.13.5)(@emotion/styled@11.13.5)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
+      '@mui/system': 6.1.9(@emotion/react@11.13.5)(@emotion/styled@11.13.5)(@types/react@18.3.12)(react@18.3.1)
+      '@mui/utils': 6.1.9(@types/react@18.3.12)(react@18.3.1)
+      '@mui/x-internals': 7.23.0(@types/react@18.3.12)(react@18.3.1)
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      reselect: 5.1.1
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /@mui/x-internals@7.23.0(@types/react@18.3.12)(react@18.3.1):
+    resolution: {integrity: sha512-bPclKpqUiJYIHqmTxSzMVZi6MH51cQsn5U+8jskaTlo3J4QiMeCYJn/gn7YbeR9GOZFp8hetyHjoQoVHKRXCig==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      '@babel/runtime': 7.26.0
+      '@mui/utils': 6.1.9(@types/react@18.3.12)(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@types/react'
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -1895,6 +1946,21 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: false
+
+  /lottie-react@2.4.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lottie-web: 5.12.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
     dev: false
 
   /merge2@1.4.1:

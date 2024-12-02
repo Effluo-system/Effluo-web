@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { setToken } from '../redux/slices/authSlice';
 import { getUserAc } from '../redux/slices/userSlice';
+import PageLoadingAnimation from '../components/PageLoading/PageLoading';
 
 export default function AuthWrapper() {
   const [searchparams] = useSearchParams();
@@ -50,7 +51,7 @@ export default function AuthWrapper() {
     }
   }, [token]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <PageLoadingAnimation removebg />;
 
   //   If not authenticated and not on the login page, redirect to login
   if (!token && !code && location.pathname !== `${ROOT.route}${LOGIN.route}`) {
