@@ -47,7 +47,33 @@ export const getReviews = async (token: string) => {
 export const getReviewSummary = async (token: string) => {
   try {
     const response = await apiRequestService.sendRequest(
-      `${EFFLUO_NODE_BASE_URL}/review-summary`,
+      `${EFFLUO_NODE_BASE_URL}/reviewer-summary`,
+      'get',
+      token
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getIssues = async (token: string) => {
+  try {
+    const response = await apiRequestService.sendRequest(
+      `${EFFLUO_NODE_BASE_URL}/issues`,
+      'get',
+      token
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getWorkload = async (token: string) => {
+  try {
+    const response = await apiRequestService.sendRequest(
+      `${EFFLUO_NODE_BASE_URL}/workload`,
       'get',
       token
     );

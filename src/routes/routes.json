@@ -11,7 +11,9 @@
       "PULL_REQUESTS": "pull-requests",
       "REVIEWS": "reviews",
       "REPOSITORIES": "repositories",
-      "REVIEWER_SUMMARY": "reviewer-summary"
+      "REVIEWER_SUMMARY": "reviewer-summary",
+      "ISSUES": "issues",
+      "WORKLOAD": "workload"
     }
   }
 }
