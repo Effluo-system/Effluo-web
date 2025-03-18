@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Repository } from '../../../types/repositories';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
@@ -16,14 +16,15 @@ const Repositories = () => {
   const [isError, setError] = useState<boolean>(false);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'id', headerName: 'ID', minWidth: 100 },
     {
       field: 'repository',
       headerName: 'Repository',
-      width: 200,
+      minWidth: 200,
+      flex: 1,
       valueGetter: (_, row) => row?.full_name,
     },
-    { field: 'url', headerName: 'URL', width: 200 },
+    { field: 'url', headerName: 'URL', minWidth: 200, flex: 1 },
   ];
 
   useEffect(() => {
@@ -55,7 +56,12 @@ const Repositories = () => {
         {isError ? (
           <CustomAlert resourceName="repositories" />
         ) : (
-          <CustomTable headers={columns} rows={repos} />
+          <>
+            <Typography variant="h2" sx={{ mb: 2 }}>
+              Repositories
+            </Typography>
+            <CustomTable headers={columns} rows={repos} />
+          </>
         )}
       </Box>
     </Container>

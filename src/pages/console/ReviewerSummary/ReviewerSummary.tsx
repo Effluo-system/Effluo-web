@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
 import { useSelector } from 'react-redux';
@@ -20,7 +20,8 @@ const ReviewerSummary = () => {
     {
       field: 'review_summary',
       headerName: 'Reviewer Summary',
-      width: 500,
+      minWidth: 500,
+      flex: 1,
       renderCell: (params) => {
         // Make the JSON string nicely spaced and formatted with line breaks
         const reviewSummary = JSON.stringify(
@@ -79,7 +80,12 @@ const ReviewerSummary = () => {
         {isError ? (
           <CustomAlert resourceName="reviewer summary" />
         ) : (
-          <CustomTable headers={columns} rows={summaries} autoHeight />
+          <>
+            <Typography variant="h2" sx={{ mb: 2 }}>
+              Reviewer Summaries
+            </Typography>
+            <CustomTable headers={columns} rows={summaries} autoHeight />
+          </>
         )}
       </Box>
     </Container>

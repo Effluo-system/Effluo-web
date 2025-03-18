@@ -82,3 +82,16 @@ export const getWorkload = async (token: string) => {
     console.error(error);
   }
 };
+
+export const triggerReviewerAlgorithm = async (token: string) => {
+  try {
+    const response = await apiRequestService.sendRequest(
+      `${EFFLUO_NODE_BASE_URL}/trigger-reviewer-algorithm`,
+      'get',
+      token
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { getPrs } from '../../../services/consoleService';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import CustomTable from '../components/CustomTable';
 import { GridColDef } from '@mui/x-data-grid';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
@@ -22,7 +22,7 @@ const PullRequests = () => {
       valueGetter: (_, row) => row?.repository?.full_name,
     },
     { field: 'title', headerName: 'Title', width: 200 },
-    { field: 'body', headerName: 'Body', width: 130 },
+    { field: 'body', headerName: 'Body', minWidth: 200, flex: 1 },
     {
       field: 'assignees',
       headerName: 'Assignees',
@@ -69,6 +69,9 @@ const PullRequests = () => {
   return !loading ? (
     <Container>
       <Box mt={5}>
+        <Typography variant="h2" sx={{ mb: 2 }}>
+          Pull Requests
+        </Typography>
         <CustomTable headers={columns} rows={prs} />
       </Box>
     </Container>

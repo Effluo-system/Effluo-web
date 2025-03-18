@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
 import { useSelector } from 'react-redux';
@@ -17,8 +17,8 @@ const Issues = () => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'assignees', headerName: 'Assignees', width: 200 },
-    { field: 'labels', headerName: 'Labels', width: 200 },
+    { field: 'assignees', headerName: 'Assignees', flex: 1, minWidth: 200 },
+    { field: 'labels', headerName: 'Labels', minWidth: 200, flex: 1 },
     { field: 'weight', headerName: 'Weight', width: 100 },
     {
       field: 'repo',
@@ -57,7 +57,12 @@ const Issues = () => {
         {isError ? (
           <CustomAlert resourceName="reviews" />
         ) : (
-          <CustomTable headers={columns} rows={issues} />
+          <>
+            <Typography variant="h2" sx={{ mb: 2 }}>
+              Issues
+            </Typography>
+            <CustomTable headers={columns} rows={issues} />
+          </>
         )}
       </Box>
     </Container>

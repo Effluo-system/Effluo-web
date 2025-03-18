@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
 import { useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const Workload = () => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID' },
-    { field: 'login', headerName: 'Login', width: 100 },
+    { field: 'login', headerName: 'Login', flex: 1 },
     {
       field: 'weight',
       headerName: 'Workload',
@@ -59,7 +59,12 @@ const Workload = () => {
         {isError ? (
           <CustomAlert resourceName="reviews" />
         ) : (
-          <CustomTable headers={columns} rows={workload} />
+          <>
+            <Typography variant="h2" sx={{ mb: 2 }}>
+              Workload
+            </Typography>
+            <CustomTable headers={columns} rows={workload} />
+          </>
         )}
       </Box>
     </Container>
