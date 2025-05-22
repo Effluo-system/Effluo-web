@@ -7,14 +7,24 @@ import AppRoutes from './routes/routes';
 import Layout from './components/MainLayout/MainLayout';
 import { ThemeProvider } from '@mui/material';
 import themeOptions from './theme/theme';
+import { SnackbarProvider } from './pages/console/components/SnackBar/SnackbarProvider';
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={themeOptions}>
-        <Layout>
-          <AppRoutes />
-        </Layout>
+        <SnackbarProvider
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          hideIconVariant
+          maxSnack={3}
+        >
+          <Layout>
+            <AppRoutes />
+          </Layout>
+        </SnackbarProvider>
       </ThemeProvider>
     </BrowserRouter>
   );

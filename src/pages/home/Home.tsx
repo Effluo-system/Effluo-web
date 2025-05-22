@@ -1,10 +1,9 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
 const Home = () => {
   return (
     <Container>
       <h1>Home</h1>
-      <Button>H</Button>
     </Container>
   );
 };
