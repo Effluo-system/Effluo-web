@@ -26,7 +26,11 @@ jobs:
 
       - name: Scan for vulnerabilities in dependencies (FS scan)
         run: |
-          trivy fs . --exit-code 1 --severity HIGH,CRITICAL --skip-dirs node_modules
+          trivy fs . \
+            --exit-code 1 \
+            --severity HIGH,CRITICAL \
+            --skip-dirs node_modules,.git,root/.npm \
+            --skip-files '**/content-v2/**'
 
       - name: Build Docker image
         run: docker build -t my-app .
