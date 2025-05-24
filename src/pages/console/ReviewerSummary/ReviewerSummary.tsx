@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react';
 import PageLoadingAnimation from '../../../components/PageLoading/PageLoading';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { GridColDef } from '@mui/x-data-grid';
-import { getReviewSummary } from '../../../services/consoleService';
+import { GridColDef, GridRowId } from '@mui/x-data-grid';
+import {
+  deleteSummary,
+  getReviewSummary,
+} from '../../../services/consoleService';
 import CustomTable from '../components/CustomTable';
 import CustomAlert from '../components/CustomAlert';
 import { ReviewerSummary as Summary } from '../../../types/summary';
@@ -72,6 +75,22 @@ const ReviewerSummary = () => {
     }
   }, [token]);
 
+  const onDeleteClick = async (
+    id: GridRowId
+  ): Promise<
+    'Successfully deleted the entry' | 'Failed to delete the entry'
+  > => {
+    if (token) {
+      const res = await deleteSummary(id.toString(), token);
+      if (res?.affected && res?.affected > 0) {
+        return 'Successfully deleted the entry';
+      } else {
+        return 'Failed to delete the entry';
+      }
+    }
+    return 'Failed to delete the entry';
+  };
+
   return isLoading ? (
     <PageLoadingAnimation removebg />
   ) : (
@@ -84,7 +103,12 @@ const ReviewerSummary = () => {
             <Typography variant="h2" sx={{ mb: 2 }}>
               Reviewer Summaries
             </Typography>
-            <CustomTable headers={columns} rows={summaries} autoHeight />
+            <CustomTable
+              headers={columns}
+              rows={summaries}
+              deleteFunction={onDeleteClick}
+              autoHeight
+            />
           </>
         )}
       </Box>

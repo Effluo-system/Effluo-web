@@ -22,6 +22,7 @@ const Workload = () => {
       field: 'weight',
       headerName: 'Workload',
       width: 200,
+      valueGetter: (_, row) => Number(row?.weight).toFixed(4),
     },
   ];
 
