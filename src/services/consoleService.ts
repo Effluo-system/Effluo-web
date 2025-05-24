@@ -1,3 +1,4 @@
+import { DeleteResult } from '../types/common';
 import apiRequestService from '../utils/apiRequestService';
 
 const EFFLUO_NODE_BASE_URL = `${
@@ -88,6 +89,22 @@ export const triggerReviewerAlgorithm = async (token: string) => {
     const response = await apiRequestService.sendRequest(
       `${EFFLUO_NODE_BASE_URL}/trigger-reviewer-algorithm`,
       'get',
+      token
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteSummary = async (
+  id: string,
+  token: string
+): Promise<DeleteResult | undefined> => {
+  try {
+    const response = await apiRequestService.sendRequest(
+      `${EFFLUO_NODE_BASE_URL}/reviewer-summary/${id}`,
+      'delete',
       token
     );
     return response;
