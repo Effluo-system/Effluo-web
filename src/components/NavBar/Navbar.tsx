@@ -18,7 +18,7 @@ import { RootState } from '../../redux/store';
 import { clearToken } from '../../redux/slices/authSlice';
 import { setUser } from '../../redux/slices/userSlice';
 
-const pages = ['Console', 'About'];
+const pages = ['Home', 'Console'];
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {
@@ -103,7 +103,11 @@ function ResponsiveAppBar() {
                   key={page}
                   onClick={() => {
                     handleCloseNavMenu;
-                    navigate(page.toLowerCase());
+                    if (page === 'Home') {
+                      navigate('/');
+                    } else {
+                      navigate(page.toLowerCase());
+                    }
                   }}
                 >
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
@@ -136,7 +140,11 @@ function ResponsiveAppBar() {
                 key={page}
                 onClick={() => {
                   handleCloseNavMenu;
-                  navigate(page.toLowerCase());
+                  if (page === 'Home') {
+                    navigate('/');
+                  } else {
+                    navigate(page.toLowerCase());
+                  }
                 }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
