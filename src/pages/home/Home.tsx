@@ -1,5 +1,12 @@
 import { Container, Stack } from '@mui/material';
 import '../../css/home.css';
+import devopsImg from '../../assets/devops-removebg.png';
+import conflictImg from '../../assets/conflict.png';
+import rocketImg from '../../assets/rocket.png';
+import stopWatchImg from '../../assets/stop-watch.png';
+import webCodingImg from '../../assets/web-coding.png';
+import hundredImg from '../../assets/100.png';
+import zeroPercentImg from '../../assets/0-percent.png';
 
 const Home = () => {
   return (
@@ -21,7 +28,7 @@ const Home = () => {
             {/* Image Section */}
             <div className="flex-1">
               <img
-                src="src/assets/devops-removebg.png"
+                src={devopsImg}
                 alt="devops"
                 className="w-full h-auto rounded-2xl"
               />
@@ -32,7 +39,7 @@ const Home = () => {
 
           <div
             className="feature-section mt-10 p-6 rounded-lg "
-            style={{ backgroundColor: '#726CFA' }}
+            style={{ backgroundColor: '#064472' }}
           >
             <h2 className="text-xl md:text-3xl font-bold text-gray-100 mb-1">
               Services We Offer
@@ -46,7 +53,7 @@ const Home = () => {
               <div className="bg-white p-4 rounded-xl felx flex-col items-center">
                 <div className="flex items-center w-full">
                   <img
-                    src="src\assets\conflict.png"
+                    src={conflictImg}
                     alt="Conflict"
                     className="w-16 h-16 mr-8"
                   ></img>
@@ -65,7 +72,7 @@ const Home = () => {
               <div className="bg-white p-4 rounded-xl felx flex-col items-center">
                 <div className="flex items-center w-full">
                   <img
-                    src="src\assets\rocket.png"
+                    src={rocketImg}
                     alt="Conflict"
                     className="w-16 h-16 mr-8"
                   ></img>
@@ -83,7 +90,7 @@ const Home = () => {
               <div className="bg-white p-4 rounded-xl felx flex-col items-center">
                 <div className="flex items-center w-full">
                   <img
-                    src="src\assets\stop-watch.png"
+                    src={stopWatchImg}
                     alt="Conflict"
                     className="w-16 h-16 mr-8"
                   ></img>
@@ -102,7 +109,7 @@ const Home = () => {
               <div className="bg-white p-4 rounded-xl felx flex-col items-center">
                 <div className="flex items-center w-full">
                   <img
-                    src="src\assets\web-coding.png"
+                    src={webCodingImg}
                     alt="Conflict"
                     className="w-16 h-16 mr-8"
                   ></img>
@@ -124,22 +131,14 @@ const Home = () => {
 
           <div className="grid grid-cols-4 gap-4">
             <div className="p-4 rounded-xl flex flex-col items-center justify-center">
-              <img
-                src="src/assets/100.png"
-                alt="Conflict"
-                className="w-16 h-16"
-              />
-              <h3 className="text-red-400 font-bold text-md mt-2">
+              <img src={hundredImg} alt="Conflict" className="w-16 h-16" />
+              <h3 className="text-pink-500 font-bold text-md mt-2">
                 GitHub Compatible
               </h3>
             </div>
 
             <div className="p-4 rounded-xl flex flex-col items-center justify-center">
-              <img
-                src="src/assets/0-percent.png"
-                alt="Conflict"
-                className="w-16 h-16"
-              />
+              <img src={zeroPercentImg} alt="Conflict" className="w-16 h-16" />
               <h3 className="text-sky-100 font-bold text-md mt-2">
                 Learning Curve
               </h3>
